@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday!</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+overflow:hidden;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4,#fad0c4);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.card{
+width:420px;
+padding:30px;
+background:white;
+border-radius:20px;
+text-align:center;
+box-shadow:0 0 30px rgba(0,0,0,.3);
+z-index:2;
+animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+}
+
+h1{
+font-size:45px;
+color:#ff1493;
+text-shadow:0 0 10px pink;
+animation:glow 1s infinite alternate;
+}
+
+@keyframes glow{
+from{text-shadow:0 0 10px pink;}
+to{text-shadow:0 0 25px deeppink;}
+}
+
+p{
+margin-top:15px;
+font-size:20px;
+color:#555;
+}
+
+button{
+margin-top:20px;
+padding:12px 25px;
+border:none;
+background:#ff1493;
+color:white;
+font-size:18px;
+border-radius:30px;
+cursor:pointer;
+transition:.4s;
+}
+
+button:hover{
+transform:scale(1.1);
+background:#ff4081;
+}
+
+.balloon{
+position:absolute;
+bottom:-150px;
+width:60px;
+height:80px;
+border-radius:50%;
+animation:rise linear infinite;
+}
+
+.balloon::after{
+content:"";
+position:absolute;
+width:2px;
+height:80px;
+background:white;
+left:50%;
+top:80px;
+}
+
+@keyframes rise{
+0%{
+transform:translateY(0);
+}
+100%{
+transform:translateY(-120vh);
+}
+}
+
+.gift{
+font-size:70px;
+cursor:pointer;
+margin-top:20px;
+transition:.5s;
+}
+
+.gift:hover{
+transform:rotate(15deg) scale(1.2);
+}
+
+.message{
+display:none;
+font-size:28px;
+color:red;
+margin-top:15px;
+animation:pop 1s;
+}
+
+@keyframes pop{
+0%{transform:scale(0);}
+100%{transform:scale(1);}
+}
+
+.confetti{
+position:absolute;
+width:10px;
+height:10px;
+animation:fall 5s linear infinite;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-100px) rotate(0deg);
+}
+100%{
+transform:translateY(110vh) rotate(720deg);
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>🎂 Happy Birthday Bro! 🎂</h1>
+
+<p>May your life be filled with happiness, success, love and endless smiles.I just wanted to drop a quick message to remind you that you are officially one year closer to the sweet release of death, so hope you're enjoying that rapid cellular decay, bestie!!! 😂💀😭</p>
+  
+
+<div class="gift" onclick="openGift()">🎁</div>
+
+<div class="message" id="msg">
+🎉 Surprise! Have an Amazing Birthday! 🎉
+</div>
+
+<button onclick="celebrate()">Celebrate 🎊</button>
+
+<button onclick="playMusic()">🎵 Music</button>
+
+</div>
+
+<audio id="music">
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+for(let i=0;i<20;i++){
+
+let b=document.createElement("div");
+
+b.className="balloon";
+
+b.style.left=Math.random()*100+"vw";
+
+b.style.background=
+"rgb("+
+Math.random()*255+","+
+Math.random()*255+","+
+Math.random()*255+")";
+
+b.style.animationDuration=(5+Math.random()*5)+"s";
+
+document.body.appendChild(b);
+
+}
+
+function celebrate(){
+
+for(let i=0;i<200;i++){
+
+let c=document.createElement("div");
+
+c.className="confetti";
+
+c.style.left=Math.random()*100+"vw";
+
+c.style.background=
+"rgb("+
+Math.random()*255+","+
+Math.random()*255+","+
+Math.random()*255+")";
+
+c.style.animationDuration=(3+Math.random()*3)+"s";
+
+document.body.appendChild(c);
+
+setTimeout(()=>{
+c.remove();
+},6000);
+
+}
+
+}
+
+function openGift(){
+
+document.getElementById("msg").style.display="block";
+
+celebrate();
+
+}
+
+function playMusic(){
+
+document.getElementById("music").play();
+
+}
+
+</script>
+
+</body>
+  </html>

@@ -164,9 +164,12 @@ transform:translateY(110vh) rotate(720deg);
 
 </div>
 
-<audio id="music">
-<source src="happy-birthday.mp3" type="audio/mpeg">
-</audio>
+<audio 
+  id="music" src="happy-birthday.mp3">
+  
+  </audio>
+
+
 
 <script>
 
@@ -226,11 +229,20 @@ celebrate();
 
 }
 
-function playMusic(){
+function playMusic() {
+    const music = document.getElementById("music");
 
-document.getElementById("music").play();
-
+    music.play()
+        .then(() => {
+            console.log("Music started");
+        })
+        .catch(error => {
+            alert(error);
+            console.log(error);
+        });
 }
+
+
 
 </script>
 

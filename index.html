@@ -138,7 +138,33 @@ transform:translateY(-100px) rotate(0deg);
 }
 100%{
 transform:translateY(110vh) rotate(720deg);
+}.cake-container{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+z-index:9999;
+animation:pop 0.5s;
 }
+
+.cake{
+font-size:120px;
+}
+
+.candles{
+font-size:45px;
+margin-bottom:-20px;
+}
+
+.countdown{
+font-size:70px;
+color:red;
+font-weight:bold;
+margin-bottom:15px;
+animation:glow 1s infinite alternate;
+  }
 }
 </style>
 </head>
@@ -162,6 +188,16 @@ transform:translateY(110vh) rotate(720deg);
 
 <button onclick="playMusic()">🎵 Music</button>
 
+</div>
+  <div id="cakeContainer" class="cake-container">
+<div class="countdown" id="countdown">3</div>
+
+<div class="cake">
+<div class="candles">
+🕯️ 🕯️ 🕯️
+</div>
+🎂
+</div>
 </div>
 
 <audio 
@@ -195,6 +231,40 @@ document.body.appendChild(b);
 
 function celebrate(){
 
+const cake=document.getElementById("cakeContainer");
+const count=document.getElementById("countdown");
+
+cake.style.display="block";
+
+let num=3;
+
+count.innerHTML=num;
+
+let timer=setInterval(()=>{
+
+num--;
+
+if(num>0){
+
+count.innerHTML=num;
+
+}else{
+
+clearInterval(timer);
+
+count.innerHTML="🎉";
+
+}
+
+},1000);
+
+setTimeout(()=>{
+
+cake.style.display="none";
+
+},5000);
+
+
 for(let i=0;i<200;i++){
 
 let c=document.createElement("div");
@@ -214,12 +284,18 @@ c.style.animationDuration=(3+Math.random()*3)+"s";
 document.body.appendChild(c);
 
 setTimeout(()=>{
+
 c.remove();
+
 },6000);
 
 }
 
 }
+
+
+
+
 
 function openGift(){
 

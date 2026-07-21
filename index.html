@@ -1472,7 +1472,7 @@ Have an Amazing Birthday!
 
 </div>
 
-<div class="cake"></div>
+<div class="cake">
 
 <div class="cake-shadow"></div>
 
@@ -1501,6 +1501,15 @@ Have an Amazing Birthday!
 <div class="smoke s1"></div>
 <div class="smoke s2"></div>
 <div class="smoke s3"></div>
+
+<div class="sprinkle s1"></div>
+<div class="sprinkle s2"></div>
+<div class="sprinkle s3"></div>
+<div class="sprinkle s4"></div>
+<div class="sprinkle s5"></div>
+<div class="sprinkle s6"></div>
+<div class="sprinkle s7"></div>
+<div class="sprinkle s8"></div>
 </div>
 
 </div>
@@ -1838,7 +1847,71 @@ txt.remove();
 },4000);
 
   }
+function celebrate(){
 
+const scene=document.getElementById("cakeScene");
+const countdown=document.getElementById("countdown");
+
+scene.style.display="flex";
+
+let num=3;
+countdown.innerHTML=num;
+
+screenFlash();
+
+firework(
+window.innerWidth/2,
+window.innerHeight/2
+);
+
+confettiBurst();
+
+const timer=setInterval(()=>{
+
+num--;
+
+if(num>0){
+
+countdown.innerHTML=num;
+
+}
+else{
+
+clearInterval(timer);
+
+countdown.innerHTML="🎉";
+
+grandFinale();
+
+}
+
+},1000);
+
+setTimeout(()=>{
+
+scene.style.display="none";
+
+},7000);
+
+}
+
+document.getElementById("musicBtn").onclick = function () {
+    document.getElementById("music").play();
+};
+
+document.getElementById("giftBtn").onclick = function () {
+    document.getElementById("giftPopup").style.display = "flex";
+
+    const gift = document.querySelector(".giftBox");
+    gift.classList.add("giftShake");
+
+    setTimeout(() => {
+        document.getElementById("giftPopup").style.display = "none";
+        gift.classList.remove("giftShake");
+    }, 3000);
+};
+
+document.getElementById("celebrateBtn").onclick = celebrate;
 </script>
 
 </body>

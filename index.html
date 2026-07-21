@@ -76,23 +76,17 @@ overflow:hidden;
 }
 
 /* Glass Card */
-
 .card{
 
 width:90%;
-
 max-width:520px;
-
 padding:35px;
-
 text-align:center;
-
 border-radius:25px;
 
 background:rgba(255,255,255,.22);
 
 backdrop-filter:blur(18px);
-
 -webkit-backdrop-filter:blur(18px);
 
 border:1px solid rgba(255,255,255,.4);
@@ -100,23 +94,39 @@ border:1px solid rgba(255,255,255,.4);
 box-shadow:
 0 10px 40px rgba(0,0,0,.25);
 
-animation:cardFloat 4s ease-in-out infinite;
+animation:
+cardFloat 4s ease-in-out infinite,
+cardRotate 10s ease-in-out infinite;
 
 z-index:10;
 
 }
+  @keyframes cardFloat{
 
-@keyframes cardFloat{
+0%,100%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-12px);
+}
+
+}
+  @keyframes cardRotate{
 
 0%,100%{
 
-transform:translateY(0px);
+transform:
+translateY(0)
+rotateY(0deg);
 
 }
 
 50%{
 
-transform:translateY(-12px);
+transform:
+translateY(-12px)
+rotateY(6deg);
 
 }
 
@@ -1378,6 +1388,56 @@ left:178px;
 bottom:84px;
 transform:rotate(-15deg);
 }
+  .bubble{
+position:fixed;
+bottom:-60px;
+width:20px;
+height:20px;
+border-radius:50%;
+background:rgba(255,255,255,.35);
+backdrop-filter:blur(4px);
+animation:bubbleRise linear forwards;
+pointer-events:none;
+}
+
+@keyframes bubbleRise{
+
+0%{
+transform:translateY(0) scale(.5);
+opacity:0;
+}
+
+20%{
+opacity:1;
+}
+
+100%{
+transform:translateY(-120vh) scale(2);
+opacity:0;
+}
+
+}
+  .clickPop{
+
+animation:clickPop .3s;
+
+}
+
+@keyframes clickPop{
+
+0%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(.85);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
 </style>
 
 </head>
@@ -1842,6 +1902,8 @@ confettiBurst();
 
 screenFlash();
 
+navigator.vibrate?.([120,60,120]);
+
 setTimeout(()=>{
 
 txt.remove();
@@ -1855,7 +1917,22 @@ const scene=document.getElementById("cakeScene");
 const countdown=document.getElementById("countdown");
 
 scene.style.display="flex";
+const cake=document.querySelector(".cake");
 
+cake.animate(
+
+[
+{transform:"scale(.2) rotate(-25deg)"},
+{transform:"scale(1.15) rotate(8deg)"},
+{transform:"scale(1)"}
+],
+
+{
+duration:1200,
+easing:"ease-out"
+}
+
+);
 let num=3;
 countdown.innerHTML=num;
 
@@ -1914,6 +1991,55 @@ document.getElementById("giftBtn").onclick = function () {
 };
 
 document.getElementById("celebrateBtn").onclick = celebrate;
+  setInterval(()=>{
+
+const b=document.createElement("div");
+
+b.className="bubble";
+
+b.style.left=Math.random()*100+"vw";
+
+const size=10+Math.random()*35;
+
+b.style.width=size+"px";
+b.style.height=size+"px";
+
+b.style.animationDuration=
+(5+Math.random()*5)+"s";
+
+document.body.appendChild(b);
+
+setTimeout(()=>{
+b.remove();
+},10000);
+
+},500);
+  document.querySelectorAll("button").forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+btn.classList.add("clickPop");
+
+setTimeout(()=>{
+
+btn.classList.remove("clickPop");
+
+},300);
+
+});
+
+});
+  setInterval(()=>{
+
+firework(
+
+Math.random()*window.innerWidth,
+
+100+Math.random()*250
+
+);
+
+},3500);
 </script>
 
 </body>

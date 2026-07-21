@@ -303,11 +303,135 @@ margin-bottom:20px;
 
 }
 
+
 .cake{
 
-font-size:180px;
+position:relative;
+
+width:220px;
+
+height:200px;
 
 }
+.layer{
+
+position:absolute;
+
+left:50%;
+
+transform:translateX(-50%);
+
+border-radius:15px;
+
+}
+
+.top{
+
+top:80px;
+
+width:120px;
+
+height:35px;
+
+background:#ffb6c1;
+
+}
+
+.middle{
+
+top:115px;
+
+width:160px;
+
+height:40px;
+
+background:#ff69b4;
+
+}
+
+.bottom{
+
+top:155px;
+
+width:210px;
+
+height:45px;
+
+background:#ff1493;
+
+}
+
+.icing{
+
+position:absolute;
+
+top:70px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:125px;
+
+height:20px;
+
+background:white;
+
+border-radius:50px;
+
+}
+
+.candle{
+
+position:absolute;
+
+width:10px;
+
+height:40px;
+
+background:#87cefa;
+
+top:35px;
+
+}
+
+.c1{
+
+left:55px;
+
+}
+
+.c2{
+
+left:105px;
+
+}
+
+.c3{
+
+left:155px;
+
+}
+
+.flame{
+
+width:12px;
+
+height:18px;
+
+background:gold;
+
+border-radius:50% 50% 50% 50%;
+
+margin:auto;
+
+margin-top:-15px;
+
+animation:flicker .3s infinite alternate;
+
+}
+
+
 
 .candles{
 
@@ -316,7 +440,25 @@ font-size:50px;
 margin-bottom:-25px;
 
 }
+@keyframes flicker{
 
+0%{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:scale(.8);
+
+opacity:.7;
+
+}
+
+}
 </style>
 
 </head>
@@ -359,10 +501,30 @@ I hope today brings you lots of smiles, amazing surprises and a year full of ble
 🕯️ 🕯️ 🕯️
 </div>
 
+
 <div class="cake">
-🎂
+
+<div class="icing"></div>
+
+<div class="candle c1">
+<div class="flame"></div>
 </div>
 
+<div class="candle c2">
+<div class="flame"></div>
+</div>
+
+<div class="candle c3">
+<div class="flame"></div>
+</div>
+
+<div class="layer top"></div>
+
+<div class="layer middle"></div>
+
+<div class="layer bottom"></div>
+
+</div>
 </div>
 
 <audio id="music" src="happy-birthday.mp3"></audio>

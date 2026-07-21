@@ -1438,6 +1438,47 @@ transform:scale(1);
 }
 
 }
+  .rocket{
+
+position:fixed;
+
+width:5px;
+
+height:28px;
+
+background:white;
+
+border-radius:10px;
+
+box-shadow:0 0 15px white;
+
+pointer-events:none;
+
+z-index:9999;
+
+animation:rocketFly 1s linear forwards;
+
+}
+
+@keyframes rocketFly{
+
+0%{
+
+transform:translateY(0);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(-70vh);
+
+opacity:0;
+
+}
+
+}
 </style>
 
 </head>
@@ -1735,6 +1776,29 @@ p.remove();
 }
 
 }
+  function launchRocket(){
+
+const rocket=document.createElement("div");
+
+rocket.className="rocket";
+
+const x=80+Math.random()*(window.innerWidth-160);
+
+rocket.style.left=x+"px";
+
+rocket.style.bottom="-40px";
+
+document.body.appendChild(rocket);
+
+setTimeout(()=>{
+
+rocket.remove();
+
+firework(x,120+Math.random()*220);
+
+},1000);
+
+}
 
 // 🎊 Confetti Burst
 
@@ -1880,7 +1944,7 @@ document.body.appendChild(txt);
 
 // fireworks
 
-for(let i=0;i<12;i++){
+for(let i=0;i<18;i++){
 
 setTimeout(()=>{
 
@@ -1900,6 +1964,11 @@ Math.random()*window.innerHeight*0.6
 
 confettiBurst();
 
+setTimeout(confettiBurst,1200);
+
+setTimeout(confettiBurst,2400);
+
+setTimeout(confettiBurst,3600);
 screenFlash();
 
 navigator.vibrate?.([120,60,120]);
@@ -1909,6 +1978,21 @@ setTimeout(()=>{
 txt.remove();
 
 },4000);
+
+  }
+  for(let i=0;i<10;i++){
+
+setTimeout(()=>{
+
+firework(
+
+Math.random()*window.innerWidth,
+
+Math.random()*window.innerHeight*0.5
+
+);
+
+},4500+i*150);
 
   }
 function celebrate(){
